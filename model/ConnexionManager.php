@@ -1,6 +1,11 @@
 <?php
+if(isset($_SESSION['active'])){
+} else {
+    header('location:http://localhost/projet4CreerBlogPourEcrivain/index.php?action=login');
+}
+
 class ConnexionManager{
-    public function dbConnect(){
+    protected function dbConnect(){
         try
         {
             $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
