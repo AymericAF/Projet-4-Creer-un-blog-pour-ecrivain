@@ -1,8 +1,7 @@
 <?php
-if(isset($_SESSION['active'])){
-} else {
-    header('location:http://localhost/projet4CreerBlogPourEcrivain/index.php?action=login');
-}
+require_once(__DIR__.'/../utils.php');
+forceConnection('login');
+
 
 ?>
 <!DOCTYPE Html>
@@ -12,7 +11,7 @@ if(isset($_SESSION['active'])){
     </head>
 
     <body>
-        <form method="post" action="http://localhost/projet4CreerBlogPourEcrivain/index.php">
+        <form id='test' method="post" action="http://localhost/projet4CreerBlogPourEcrivain/index.php">
             <label for="pseudo">Pseudo :</label>
             <input type="text" name="pseudo" id="pseudo">
             <label for="password">Mot de passe :</label>

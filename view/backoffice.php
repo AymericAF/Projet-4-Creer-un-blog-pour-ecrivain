@@ -1,21 +1,6 @@
 <?php 
-    if(isset($_SESSION['active'])){
-        if($_SESSION['access_level']!=='admin'){
-            header('location: ../index.php');
-        } 
-    } else{
-        session_start();
-        if($_SESSION['access_level']!=='admin'){
-            header('location: ../index.php');
-        }
-    }
-
-
-
-    if(defined('ROOT')){
-    } else {
-        define('ROOT', 'http://localhost/projet4CreerBlogPourEcrivain');
-    }
+    require_once(__DIR__.'/../utils.php');
+    forceConnection('login'); 
 ?>
 
 <!DOCTYPE html>
@@ -28,10 +13,18 @@
     <body>
         <?php require_once('header.php')?>
 
-        <h1>Bienvenue dans le Backoffice</h1>
+        <h1>Les derniers billets</h1>
 
-
-
-        
+        <div>
+            <?php 
+                if(isset($billets)){
+                    foreach($billets as $value){
+                        echo '<h2>'.$value[0].'</h2>';
+                        echo $value[1];
+                        echo '</br>';
+                    }
+                }
+            ?>
+        </div>
     </body>
 </html>

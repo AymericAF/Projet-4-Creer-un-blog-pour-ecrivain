@@ -1,11 +1,8 @@
 <?php
-if(isset($_SESSION['active'])){
-} else {
-    header('location:http://localhost/projet4CreerBlogPourEcrivain/index.php?action=login');
-}
-
-require_once('model/ConnexionManager.php');
-require_once('model/UserModel.php');
+require_once(__DIR__.'/../utils.php');
+require_once(__DIR__.'/ConnexionManager.php');
+require_once(__DIR__.'/UserModel.php');
+forceConnection('login');
 
 class Users extends ConnexionManager{    
     public function getUserInformationWithPseudo($pseudo){

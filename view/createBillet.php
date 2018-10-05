@@ -1,21 +1,6 @@
 <?php 
-    if(isset($_SESSION['active'])){
-        if($_SESSION['access_level']!=='admin'){
-            header('location: ../index.php');
-        }
-    } else{
-        session_start();
-        if($_SESSION['access_level']!=='admin'){
-            header('location: ../index.php');
-        }
-    }
-
-
-    if(defined('ROOT')){
-
-    } else {
-        define('ROOT', 'http://localhost/projet4CreerBlogPourEcrivain');
-    }
+    require_once(__DIR__.'/../utils.php');
+    forceConnection('login');
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +13,7 @@
     </head>
 
     <body>
-        <?php require($_SERVER['DOCUMENT_ROOT'].'/projet4CreerBlogPourEcrivain/view/header.php');?>
+        <?php require_once(__DIR__.'/header.php');?>
         <h1>Création de billet</h1>
         <form method='post' action='http://localhost/projet4CreerBlogPourEcrivain/index.php'>
             <label for='newBilletTitle'>Titre</label>
