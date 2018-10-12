@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__.'/../model/UsersManager.php');
 require_once(__DIR__.'/billetController.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/projet4CreerBlogPourEcrivain/controller_utils.php');
+require_once(__DIR__.'/../controller_utils.php');
 
 function login(){
     if(isset($_POST['pseudo']) && isset($_POST['password'])){

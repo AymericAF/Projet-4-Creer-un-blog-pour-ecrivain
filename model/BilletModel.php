@@ -51,7 +51,7 @@ class Billet{
     }
 
     public function setLast_modification_date($last_modification_date){
-        $this->_last_modification_date = $Last_modification_date;
+        $this->_last_modification_date = $last_modification_date;
     }
 
     public function setUser_id($user_id){

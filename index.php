@@ -6,6 +6,9 @@ if(isset($_SESSION)){
 }
 
 require_once(__DIR__.'/config.php');
+require_once(__DIR__.'/controller/adminController.php');
+require_once(__DIR__.'/controller/billetController.php');
+require_once(__DIR__.'/controller/accueilController.php');
 
 // Routeur vers les différents Controller
 if(isset($_REQUEST['action'])){
@@ -34,7 +37,21 @@ if(isset($_REQUEST['action'])){
             require_once(__DIR__.'/controller/adminController.php');
             require_once(__DIR__.'/controller/billetController.php');
             read('backoffice');
-            displayViewBackoffice();
+            break;
+        case 'displayBilletToModify' :
+            require_once(__DIR__.'/controller/billetController.php');
+            displayBilletToModify($_GET['idBillet']);
+            break;
+        case 'modifyBillet' :
+            require_once(__DIR__.'/controller/billetController.php');
+            modifyBillet($_POST['idBillet']);
+            break;
+        case 'deleteBillet' :
+            require_once(__DIR__.'/controller/billetController.php');
+            deleteBillet($_GET['idBillet']);
+            break;
+        case 'createComment' :
+            
             break;
         default:
             require_once(__DIR__.'/controller/accueilController.php');
