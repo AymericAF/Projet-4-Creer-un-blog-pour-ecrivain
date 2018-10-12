@@ -1,21 +1,14 @@
 <?php 
-    // if($_SESSION['access_level']!=='admin'){
-    //     header('location: ../index.php');
-    // }
-    if(defined('ROOT')){
-
-    } else {
-        define('ROOT', 'http://localhost/projet4CreerBlogPourEcrivain');
-    }
-
+    require_once(__DIR__.'/../utils.php');
+    forceConnection('login');
 ?>
 
 <header>
     <h1>NOTRE SITE</h1>
     <nav>
         <ul>
-            <li><a href='<?php echo ROOT.'/view/createBillet.php'; ?>'>Nouveau Billet</a>
-            </li>
+            <li><a href='<?php echo ROOT.'/index.php?action=backofficeView'; ?>'>Accueil</a></li>
+            <li><a href='<?php echo ROOT.'/index.php?action=createBilletDisplayView'; ?>'>Nouveau Billet</a></li>
         </ul>
         
     </nav>

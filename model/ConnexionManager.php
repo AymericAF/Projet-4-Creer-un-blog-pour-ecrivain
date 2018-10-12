@@ -1,9 +1,13 @@
 <?php
+require_once(__DIR__.'/../utils.php');
+forceConnection('login');
+
 class ConnexionManager{
-    public function dbConnect(){
+    protected function dbConnect(){
         try
         {
-            $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+            require(__DIR__.'/../parameters.php');
+            $db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset=utf8', $user, $password);
             return $db;
         }
         catch(Exception $e)

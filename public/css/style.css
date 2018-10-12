@@ -14,3 +14,23 @@ header{
 h1{
     margin: 0;
 }
+
+a{
+    color: white;
+}
+
+.modifyButton{
+    border: 1px black solid;
+    color: black;
+}
+
+.deleteButton{
+    border: 1px black solid;
+    color: black;
+}
+
+.commentButton{
+    border: 1px black solid;
+    color: black;
+}
+
