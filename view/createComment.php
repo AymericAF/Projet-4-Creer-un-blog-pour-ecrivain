@@ -1,6 +1,6 @@
 <?php 
     require_once(__DIR__.'/../utils.php');
-    forceConnection('login');
+    forceConnection('accueil');
 ?>
 
 <!DOCTYPE html>
@@ -8,22 +8,24 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
-        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-        <script>tinymce.init({ selector:'.tinyText', language_url: '<?php echo ROOT.'/public/language/tinymce_languages/langs/fr_FR.js';?>'});</script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel='stylesheet' href=<?php echo ROOT.'/public/css/style.css'; ?>>
     </head>
 
     <body>
-        <?php require_once(__DIR__.'/header.php');?>
-        <h1>Création de billet</h1>
+        <?php require_once(__DIR__.'/headerUser.php');?>
+        <h1>Création de commentaire</h1>
+        <?php 
+            if(isset($billet)){
+                echo '<h2>Titre de l\'article : '.$billet->getTitle().'</h2>';
+                echo '<p>Contenu de l\'article : </p>'.$billet->getContent();
+            }
+        ?>
         <form method='post' action='<?php echo ROOT.'/index.php';?>'>
-            <label for='newBilletTitle'>Titre</label>
-            <input type='text' name='newBilletTitle' id='newBilletTitle'>
-            <label for='newBilletContent'>Contenu du billet</label>
-            <textarea class='tinyText' name='newBilletContent' id='newBilletContent'></textarea>
+            <textarea name='newCommentContent' id='newCommentContent'></textarea>
             <input type="submit" value='Enregistrer'>   
-            <input type="hidden" name='action' value='createBillet'>     
+            <input type="hidden" name='action' value='createComment'> 
+            <input type="hidden" name='idBillet' value='<?php echo $billet->getId();?>'>    
         </form>
       
         <?php 

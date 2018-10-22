@@ -9,6 +9,7 @@ require_once(__DIR__.'/config.php');
 require_once(__DIR__.'/controller/adminController.php');
 require_once(__DIR__.'/controller/billetController.php');
 require_once(__DIR__.'/controller/accueilController.php');
+require_once(__DIR__.'/controller/commentController.php');
 
 // Routeur vers les différents Controller
 if(isset($_REQUEST['action'])){
@@ -50,7 +51,27 @@ if(isset($_REQUEST['action'])){
             require_once(__DIR__.'/controller/billetController.php');
             deleteBillet($_GET['idBillet']);
             break;
+        case 'displayViewCreateComment' :
+            require_once(__DIR__.'/controller/commentController.php');
+            displayViewCreateComment($_GET['idBillet']);
+            break;
         case 'createComment' :
+            require_once(__DIR__.'/controller/commentController.php');
+            createComment();
+            break;
+        case 'newUser' :
+            require_once(__DIR__.'/controller/accueilController.php');
+            newUser($_POST['pseudo'], $_POST['email'], $_POST['password'], $_POST['passwordConfirmation']);
+            break;
+        case 'seDeconnecter' :
+            require_once(__DIR__.'/controller/adminController.php');
+            seDeconnecter();
+            break;
+        case 'articleView' : 
+            require_once(__DIR__.'/controller/billetAndCommentController.php');
+            displayBilletWithComments($_GET['idBillet']);
+            break;
+        case 'reportAComment' :
             
             break;
         default:
