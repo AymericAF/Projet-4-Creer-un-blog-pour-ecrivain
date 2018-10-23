@@ -17,3 +17,13 @@ function read($view, $message=''){
     require_once(__DIR__.'/view/'.$view.'.php');
 };
 
+function readComments($view){
+    $comments = new BilletsManager;
+    $comment = $comments->readCommentsInDb();
+
+    require_once(__DIR__.'/view/'.$view.'.php');
+};
+
+
+
+

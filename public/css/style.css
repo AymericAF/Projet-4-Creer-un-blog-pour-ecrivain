@@ -8,7 +8,7 @@ body{
 header{
     width: 100%;
     background-color: #2F4954;
-    height: 100px;
+    height: 150px;
 }
 
 h1{
@@ -34,3 +34,7 @@ a{
     color: black;
 }
 
+.articleLink{
+    border: 1px black solid;
+    color: black;
+}

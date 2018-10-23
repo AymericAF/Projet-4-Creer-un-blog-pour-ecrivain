@@ -5,7 +5,7 @@ require_once(__DIR__.'/../controller_utils.php');
 
 function login(){
     if(isset($_POST['pseudo']) && isset($_POST['password'])){
-        $connexion = new Users;
+        $connexion = new Users();
         $user = $connexion->getUserInformationWithPseudo($_POST['pseudo']);
 
         if($user->getAccess_level() ==='admin' && password_verify($_POST['password'], $user->getPassword())){
@@ -14,8 +14,9 @@ function login(){
             read('backoffice');
         } elseif($user->getAccess_level()==='user' && password_verify($_POST['password'], $user->getPassword())){
             $_SESSION['access_level'] = 'user';
-            $erreurAdmin = "Vous n'êtes pas autorisé à accèder à cette partie du site.";
-            require_once(__DIR__.'/../view/admin.php');
+            $_SESSION['userId'] = $user->getId();
+            read('accueil');
+            // require_once(__DIR__.'/../view/accueil.php');
         } else{
             $_SESSION['access_level'] = 'not_valid';
             $erreurAdmin = "Votre user et/ou votre mot de passe ne sont pas valides. Veuillez vérifier ces informations";
@@ -34,4 +35,16 @@ function displayViewAdmin(){
 
 function displayViewBackoffice(){
     require_once(__DIR__.'/../view/backoffice.php');
+}
+
+function seDeconnecter(){
+    $_SESSION = array();
+    if (ini_get("session.use_cookies")){
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    };
+    session_destroy();
 }

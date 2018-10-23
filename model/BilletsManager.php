@@ -50,7 +50,6 @@ class BilletsManager extends ConnexionManager{
         return $total;
     }
 
-
     public function getBilletById($id){
         $billet = new Billet;
         
@@ -94,6 +93,22 @@ class BilletsManager extends ConnexionManager{
             'id' => $id
         ));
         $req->closeCursor(); 
+    }
+
+    public function readOneArticle($id){
+        $id=intval($id);
+        $billet = new Billet;
+        $req = $this->dbConnect()->prepare('SELECT * FROM articles WHERE id=:id');
+        $req->execute(array(
+            'id' => $id
+        ));
+        while($result = $req->fetch()){
+            $billet->setTitle($result['title']);
+            $billet->setContent($result['content']);
+            $billet->setId($result['id']);
+        }
+        $req->closeCursor();
+        return $billet;
     }
 
 }
