@@ -15,6 +15,8 @@ function login(){
         } elseif($user->getAccess_level()==='user' && password_verify($_POST['password'], $user->getPassword())){
             $_SESSION['access_level'] = 'user';
             $_SESSION['userId'] = $user->getId();
+            // header("location:".  $_SERVER['HTTP_REFERER']); 
+    
             read('accueil');
             // require_once(__DIR__.'/../view/accueil.php');
         } else{
@@ -47,4 +49,5 @@ function seDeconnecter(){
         );
     };
     session_destroy();
+    header("location:".  $_SERVER['HTTP_REFERER']); 
 }
