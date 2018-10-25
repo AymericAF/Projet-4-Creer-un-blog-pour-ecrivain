@@ -8,7 +8,7 @@ function read($view, $message=''){
     $nbOfBillets = $billet->nbOfBillets();
     $maxNbOfPage = ceil($nbOfBillets/$nbOfBilletsPerPage);
 
-    $billets = $billet->readInDb(5, 1);
+    $billets = $billet->readInDb(100, 1);
     
     if(!empty($message)){
         $confirmationMessage = $message;

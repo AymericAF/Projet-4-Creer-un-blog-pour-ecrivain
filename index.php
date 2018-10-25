@@ -72,7 +72,8 @@ if(isset($_REQUEST['action'])){
             displayBilletWithComments($_GET['idBillet']);
             break;
         case 'reportAComment' :
-            
+            require_once(__DIR__.'/controller/commentController.php');
+            addReport($_GET['idComment']);
             break;
         default:
             require_once(__DIR__.'/controller/accueilController.php');

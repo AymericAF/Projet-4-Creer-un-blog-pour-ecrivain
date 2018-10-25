@@ -9,6 +9,7 @@ Class Comment{
     private $_author;
     private $_creation_date;
     private $_moderated;
+    private $_report;
 
     public function getId(){
         return $this->_id;
@@ -32,6 +33,10 @@ Class Comment{
 
     public function getModerated(){
         return $this->_moderated;
+    }
+    
+    public function getReport(){
+        return $this->_report;
     }
 
     public function setId($id){
@@ -57,5 +62,7 @@ Class Comment{
     public function setModerated($moderated){
         $this->_moderated = $moderated;
     }
-
+    public function setReport($report){
+        $this->_report = $report;
+    }
 }

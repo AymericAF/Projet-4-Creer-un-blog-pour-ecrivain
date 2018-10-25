@@ -23,3 +23,9 @@ function forceConnection($action){
         redirect($action);
     }
 }
+
+function pageTitle($title){
+    require_once(__DIR__.'/view/html.php');
+}
+
+

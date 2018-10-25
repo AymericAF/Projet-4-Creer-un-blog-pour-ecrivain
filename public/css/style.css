@@ -5,19 +5,99 @@ body{
     border: 0px;
 }
 
-header{
-    width: 100%;
-    background-color: #2F4954;
-    height: 150px;
-}
-
 h1{
+    font-family: 'Gloria Hallelujah', cursive;
     margin: 0;
 }
 
 a{
     color: white;
+    border: 0px !important; 
+    text-decoration: none !important;
 }
+
+.padding-top-20{
+    padding-top: 20px;
+}
+
+.padding-10{
+    padding: 10px;
+}
+
+.full-width{
+    padding: 0px;
+}
+
+.max-height{
+    height: 100%;
+}
+
+.max-height.row{
+    align-items: center;
+}
+
+.logo{
+    color: #212529;
+}
+
+.comment-to-create{
+    width: 100%;
+    height: 100px;
+}
+
+/* Header */
+header{
+    width: 100%;
+    background-color: #2A6564;
+    height: 75px;
+    margin-bottom: 1rem;    
+    position: fixed;
+    vertical-align: middle;
+}
+
+.headerAdmin{
+    height: 150px;
+}
+
+.connect{
+    color: #212529;
+    vertical-align: middle;
+}
+
+.connect:hover{
+    color: #e4e2ec;
+}
+
+.divSousHeader{
+    top: 75px;
+    position: relative;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+/* Page Accueil Image et Titre*/
+
+#title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#title h2{
+    position: absolute;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 4rem;
+
+}
+img{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 75px;
+}
+
+/* Provisoire*/
 
 .modifyButton{
     border: 1px black solid;
@@ -38,3 +118,49 @@ a{
     border: 1px black solid;
     color: black;
 }
+
+.smallMessage{
+    font-size: 0.5rem;
+}
+
+/* commentaire */
+.comments{
+    border: 1px grey solid;
+    border-radius: 3px;
+    background-color: #e4e2ec75;
+}
+
+
+
+/* Footer */
+footer{
+    background-color: #2A6564;
+    height: 75px;
+    margin-top: 20px;
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+
+footer p{
+    font-size: 0.8rem;
+    margin-bottom: 0px;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+
+/* Responsive */
+
+@media screen and (max-width: 960px) {
+    #title h2{
+        font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #title h2{
+        font-size: 2rem;
+    }
+}
+
