@@ -1,11 +1,11 @@
 <?php
 require_once(__DIR__.'/../utils.php');
 require_once(__DIR__.'/../model/UsersManager.php');
+require_once(__DIR__.'/../controller_utils.php');
 forceConnection('accueil');
 
-function viewHome(){
-    read('accueil');
-    // readComments('accueil');
+function viewHome($page){
+    read('accueil','', $page);
 }
 
 function userLogin(){

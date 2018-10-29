@@ -42,29 +42,28 @@ class CommentsManager extends ConnexionManager{
             $commentAuthor = $result['pseudo'];
             $commentCreationDate = $result['niceDate'];
             $commentModerated = $result['moderated'];
-            $commentReport = $result['report'];
             $comments[] = array($commentId, $commentArticleId, $commentContent, $commentAuthor, $commentCreationDate, 
-            $commentModerated, $commentReport);
+            $commentModerated);
         }
         $req->closeCursor();
         return $comments;
     }
 
-    public function addReport($idComment){
-        $req = $this->dbConnect()->prepare('SELECT report FROM comments WHERE id=:idComment');
-        $req->bindParam(':idComment', $idComment, PDO::PARAM_INT);
-        $req->execute();
-        $nbOfReports = $req->fetch();
-        $nbOfReports = $nbOfReports['report'];
-        $req->closeCursor();
+    // public function addReport($idComment){
+    //     $req = $this->dbConnect()->prepare('SELECT report FROM comments WHERE id=:idComment');
+    //     $req->bindParam(':idComment', $idComment, PDO::PARAM_INT);
+    //     $req->execute();
+    //     $nbOfReports = $req->fetch();
+    //     $nbOfReports = $nbOfReports['report'];
+    //     $req->closeCursor();
 
-        $req = $this->dbConnect()->prepare('UPDATE comments SET report=:report WHERE id=:idComment');
-        $nbOfReports = $nbOfReports + 1;
-        $req->bindParam(':report', $nbOfReports, PDO::PARAM_INT);
-        $req->bindParam(':idComment', $idComment, PDO::PARAM_INT);
-        $req->execute();
-        $req->closeCursor();
+    //     $req = $this->dbConnect()->prepare('UPDATE comments SET report=:report WHERE id=:idComment');
+    //     $nbOfReports = $nbOfReports + 1;
+    //     $req->bindParam(':report', $nbOfReports, PDO::PARAM_INT);
+    //     $req->bindParam(':idComment', $idComment, PDO::PARAM_INT);
+    //     $req->execute();
+    //     $req->closeCursor();
 
-        $_SESSION['messageSignalement'] = 'Vous avez signalé un commentaire à un modérateur qui fera le nécessaire dans les plus bref délai.';
-    }
+        
+    // }
 }

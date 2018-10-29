@@ -15,13 +15,13 @@ function login(){
         } elseif($user->getAccess_level()==='user' && password_verify($_POST['password'], $user->getPassword())){
             $_SESSION['access_level'] = 'user';
             $_SESSION['userId'] = $user->getId();
-            // header("location:".  $_SERVER['HTTP_REFERER']); 
-    
-            read('accueil');
-            // require_once(__DIR__.'/../view/accueil.php');
+            addMessage('success', 'Vous vous êtes connecté avec succès.');
+            header("location:".  $_SESSION['url']); 
+
         } else{
             $_SESSION['access_level'] = 'not_valid';
-            $erreurAdmin = "Votre user et/ou votre mot de passe ne sont pas valides. Veuillez vérifier ces informations";
+            addMessage('warning', 'Votre user et/ou votre mot de passe ne sont pas valides. Veuillez vérifier ces informations.');
+            // $erreurAdmin = "Votre user et/ou votre mot de passe ne sont pas valides. Veuillez vérifier ces informations";
             require_once(__DIR__.'/../view/admin.php');
         }
     } else{

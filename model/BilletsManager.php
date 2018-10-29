@@ -25,8 +25,12 @@ class BilletsManager extends ConnexionManager{
 
     public function readInDb($nbArticlesParPage, $page){
         $billets = array();
-        $offset = ($page - 1) * $nbArticlesParPage;
-    
+        if($page === 0){
+            $page = 1;
+        }
+
+        $offset = ($page -1) * $nbArticlesParPage;
+
         $req = $this->dbConnect()->prepare("SELECT * FROM articles ORDER BY id DESC LIMIT :limit OFFSET :offset");
         $req->bindParam(':limit', $nbArticlesParPage, PDO::PARAM_INT);
         $req->bindParam(':offset', $offset, PDO::PARAM_INT);

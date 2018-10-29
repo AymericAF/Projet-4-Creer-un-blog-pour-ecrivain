@@ -3,6 +3,7 @@ require_once(__DIR__.'/../utils.php');
 require_once(__DIR__.'/../model/BilletsManager.php');
 require_once(__DIR__.'/../model/CommentsManager.php');
 require_once(__DIR__.'/../controller_utils.php');
+require_once(__DIR__.'/../model/ReportsManager.php');
 
 forceConnection('accueil');
 
@@ -35,3 +36,5 @@ function displayBilletWithComments($idBillet){
         require_once(__DIR__.'/../view/accueil.php');
     }
 }
+
+

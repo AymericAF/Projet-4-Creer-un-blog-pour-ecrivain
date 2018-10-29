@@ -16,19 +16,26 @@ if(isset($_REQUEST['action'])){
     switch ($_REQUEST['action']) {
         case 'loginAdmin':
             require_once(__DIR__.'/controller/adminController.php');
-            login();    
+            login();  
+            unset($_SESSION['url']);  
             break;
         case 'createBillet':
             require_once(__DIR__.'/controller/billetController.php');
             create();
             break;
         case 'login':
+            $_SESSION['url'] = $_SERVER['HTTP_REFERER'];
             require_once(__DIR__.'/controller/adminController.php');
             displayViewAdmin();
             break;
         case 'accueil':
             require_once(__DIR__.'/controller/accueilController.php');
-            viewHome();
+            if(isset($_GET['page'])){
+                viewHome($_GET['page']);
+            }else{
+                viewHome(1);
+            }
+            
             break;
         case 'createBilletDisplayView' :
             require_once(__DIR__.'/controller/billetController.php');
@@ -53,6 +60,7 @@ if(isset($_REQUEST['action'])){
             break;
         case 'displayViewCreateComment' :
             require_once(__DIR__.'/controller/commentController.php');
+            $_SESSION['url'] = $_SERVER['HTTP_REFERER'];
             displayViewCreateComment($_GET['idBillet']);
             break;
         case 'createComment' :
@@ -72,14 +80,15 @@ if(isset($_REQUEST['action'])){
             displayBilletWithComments($_GET['idBillet']);
             break;
         case 'reportAComment' :
-            require_once(__DIR__.'/controller/commentController.php');
-            addReport($_GET['idComment']);
+            require_once(__DIR__.'/controller/reportController.php');
+            $_SESSION['url'] = $_SERVER['HTTP_REFERER'];
+            createReport($_GET['idComment'], $_SESSION['userId']);
             break;
         default:
             require_once(__DIR__.'/controller/accueilController.php');
-            viewHome();
+            viewHome(1);
     }
 } else{
     require_once(__DIR__.'/controller/accueilController.php');
-    viewHome();
+    viewHome(1);
 }
