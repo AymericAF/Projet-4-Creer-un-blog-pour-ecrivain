@@ -8,27 +8,29 @@
         <div class='container-fluid'>
             <div class="row">
                 <div class="col-sm">
-                    <h1>Jean Forteroche</h1>
+                    <a href="index.php?action=backofficeView"><h1 class='logo connect' >Jean Forteroche</h1></a>       
                 </div>
                 <div class="col-sm-2">
                     <?php if(isset($_SESSION['userId'])){
-                        echo '<p>Vous êtes connecté UserId:'.$_SESSION['userId'].'</p>';
-                        echo '<a href=index.php?action=seDeconnecter>Se déconnecter</a>';
+                        echo "<a class='connect' href=index.php?action=seDeconnecter>Se déconnecter</a>";
                         } else{
-                            echo '<p>Vous n\'êtes pas connecté</p>';
-                            echo '<a href=index.php?action=loginAdmin>Se connecter</a>';
+                            echo "<a class='connect' href=index.php?action=login>Se connecter</a>";
                         } ;
                     ?> 
                 </div>
             </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href='<?php echo ROOT.'/index.php?action=backofficeView'; ?>'>Accueil</a></li>
-                <li><a href='<?php echo ROOT.'/index.php?action=createBilletDisplayView'; ?>'>Nouveau Billet</a></li>
-            </ul>
+        <div>
+            <nav>
+                <ul class='nav'> 
+                    <li class='nav-item'><a class='connect nav-link' href='<?php echo ROOT.'/index.php?action=backofficeView'; ?>'>Accueil</a></li>
+                    <li class='nav-item'><a class='connect nav-link' href='<?php echo ROOT.'/index.php?action=createBilletDisplayView'; ?>'>Nouveau Billet</a></li>
+                </ul>
             
-        </nav>
+            </nav>
+        </div>
+        
+
 
     </header>
 

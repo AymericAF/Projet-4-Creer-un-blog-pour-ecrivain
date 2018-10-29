@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__.'/../utils.php');
 require_once(__DIR__.'/../controller_utils.php');
+require_once(__DIR__.'/../controller/reportController.php');
 forceConnection('accueil');
 
 ?>
@@ -9,7 +10,7 @@ forceConnection('accueil');
         require_once('headerUser.php');?>
                 <p>Pour signaler un commentaire, vous devez être connecté.</p>
         <?php 
-                
+
                 if(isset($billet)){
                     echo "<div class='container divSousHeader'>";
                     echo '<h1>'.$billet->getTitle().'</h1>';
@@ -18,16 +19,17 @@ forceConnection('accueil');
                         echo "<a role='button' class='commentButton btn btn-primary' href=index.php?action=displayViewCreateComment&idBillet=".$billet->getId().">Laisser un commentaire</a>";
                     } else{
                         echo "<p class='bold'>Pour laisser un commentaire, vous devez être connecté.</p>";
-                        echo "<a class='btn btn-primary' class='connect' href=index.php?action=loginAdmin>Se connecter</a>";
+                        echo "<a class='btn btn-primary' class='connect' href=index.php?action=login>Se connecter</a>";
                     }
-                    
                     echo "</div>";
                 }
-                if(isset($_SESSION['messageSignalement'])){
-                    echo "<div class='container divSousHeader'>";
-                    echo "<p class='bold'>".$_SESSION['messageSignalement']."</p>";
+                if(isset($_SESSION['message'])){
+                    echo "<div class='container alert alert-".$_SESSION['messageType']." divSousHeader'>";
+                    echo "<p>".$_SESSION['message']."</p>";
                     echo "</div>";
+                    unset($_SESSION['message']);
                 }
+                
                 if(isset($commentsTab)){
                     echo "<div class='container divSousHeader'><h2>Les commentaires</h2>";
                     foreach($commentsTab as $value){
@@ -36,7 +38,13 @@ forceConnection('accueil');
                         echo '<p>'.$value[2].'</p>';
                         if(isset($_SESSION['userId'])){
                             if($value[5]!= 1){
-                                echo "<a role='button' class='commentButton btn btn-primary' href=index.php?action=reportAComment&idComment=".$value[0].">Signaler le commentaire</a>";
+                                $testReport = checkIfUserReportComment($_SESSION['userId'], $value[0]);
+                                if(intval($testReport[0])){
+                                    echo "<p class=smallMessage>Vous avez déjà signalé ce commentaire.</p>";
+                                } else{
+                                    echo "<a role='button' class='commentButton btn btn-primary' href=index.php?action=reportAComment&idComment=".$value[0].">Signaler le commentaire</a>";
+                                }
+                                
                             } else{
                                 echo "<p class='smallMessage bold'>Ce commentaire a été validé par un modérateur et ne peut donc plus être signalé.</p>";
                             }

@@ -56,7 +56,11 @@ header{
 }
 
 .headerAdmin{
-    height: 150px;
+    height: 100px;
+}
+
+ul{
+    list-style-type: none;
 }
 
 .connect{
@@ -70,6 +74,11 @@ header{
 
 .divSousHeader{
     top: 75px;
+    position: relative;
+}
+
+.divSousHeaderAdmin{
+    top: 100px;
     position: relative;
 }
 
@@ -149,6 +158,10 @@ footer p{
     margin-right: auto;
 }
 
+.test{
+    width: 100%;
+    border: 0px;
+}
 
 /* Responsive */
 
@@ -164,3 +177,11 @@ footer p{
     }
 }
 
+@media screen and (max-width: 576px) {
+    .headerAdmin{
+        height: 150px;
+    }
+    .divSousHeaderAdmin{
+        top: 150px;
+    }
+}

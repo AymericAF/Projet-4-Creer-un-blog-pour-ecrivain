@@ -11,7 +11,9 @@ function createComment(){
         $comment = new CommentsManager();
         $comment->createCommentInDb();  
     }
-    header("location:".  $_SERVER['HTTP_REFERER']); 
+    addMessage('success', 'Votre commentaire a été publié.');
+    header("location:".  $_SESSION['url']);
+    unset($_SESSION['url']);
 }
 
 function displayViewCreateComment($idBillet){
@@ -25,14 +27,5 @@ function displayViewCreateComment($idBillet){
     } else{
         require_once(__DIR__.'/../view/admin.php');
     }
-}
-
-function addReport($idComment){
-    $idComment = intval($idComment);
-    if(isset($_SESSION['userId']) && is_int($idComment)){
-        $comment = new CommentsManager();
-        $comment->addReport($idComment);
-    }
-    header("location:".  $_SERVER['HTTP_REFERER']); 
 }
 

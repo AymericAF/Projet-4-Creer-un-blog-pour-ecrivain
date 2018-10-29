@@ -60,13 +60,12 @@ forceConnection('login');
                 </div>
                 
             </div>
-            <!-- <div class='row'>
-                <?php  
-                    if(isset($erreurAdmin)){             
-                        echo $erreurAdmin;
-                    }
-                ?>
-            </div> -->
+            <?php if(isset($_SESSION['message'])){
+                    echo "<div class='container alert alert-".$_SESSION['messageType']." divSousHeader'>";
+                    echo "<p>".$_SESSION['message']."</p>";
+                    echo "</div>";
+                    unset($_SESSION['message']);
+                } ?>
         </div>
         <?php require_once(__DIR__.'/footer.php'); ?>
         </div>

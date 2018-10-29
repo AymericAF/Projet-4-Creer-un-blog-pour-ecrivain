@@ -14,8 +14,11 @@ forceConnection('accueil');
         
         
         <?php 
-            if(isset($message)){
-                echo "<p>".$message."</p>";
+            if(isset($_SESSION['message'])){
+                echo "<div class='padding-20-top container alert alert-".$_SESSION['messageType']."'>";
+                echo "<p>".$_SESSION['message']."</p>";
+                echo "</div>";
+                unset($_SESSION['message']);
             }
 
             if(isset($billets)){
@@ -32,6 +35,31 @@ forceConnection('accueil');
                 echo "</div>";
                 echo "</div>";
             }
+        ?>
+        <nav aria-label="Page navigation">
+            <ul class="pagination container">
+                
+                <li class="page-item"><a class="page-link" href='index.php?action=accueil&page=.
+                <?php 
+                    if($page==0){
+                        $page = 1; 
+                        echo $page;
+                        } else{
+                            $page = $page - 1 ;
+                            echo $page;
+                            };
+                ?>>Page précédente</a></li>
+                <?php 
+                    $i = 1;
+                    while($i <= $maxNbOfPage) {
+                        echo "<li class='page-item'><a class='page-link' href='index.php?action=accueil&page=$i'>$i</a></li>";
+                        $i++;
+                    };
+                ?>
+                <li class="page-item"><a class="page-link" href='index.php?action=accueil&page='$page+1>Page suivante</a></li>
+            </ul>
+        </nav>
+        <?php   
             require_once(__DIR__.'/footer.php');
         ?>
     </div>

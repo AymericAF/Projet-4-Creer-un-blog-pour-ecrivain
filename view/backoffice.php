@@ -6,23 +6,26 @@
         <?php pageTitle('Backoffice');
         require_once('header.php')?>
 
-        <h1>Les derniers billets</h1>
-
         <div>
             
             <?php 
                 if(isset($confirmationMessage)){
+                    echo "<div class='container divSousHeaderAdmin'>";
                     echo '<p>'.$confirmationMessage.'</p>';
+                    echo '</div>';
                 }
             ?>
             
             <?php 
                 if(isset($billets)){
                     foreach($billets as $value){
+                        echo "<div class='container divSousHeaderAdmin'>"; 
                         echo '<h2>'.$value[0].'</h2>';
-                        echo "<a class='modifyButton' href=index.php?action=displayBilletToModify&idBillet=$value[2]>Modifier</a>";
-                        echo "<a class='deleteButton' href=index.php?action=deleteBillet&idBillet=$value[2]>Supprimer</a>";
                         echo $value[1];
+                        echo "<a class='modifyButton btn btn-primary' href=index.php?action=displayBilletToModify&idBillet=$value[2]>Modifier</a>";
+                        echo '  ';
+                        echo "<a class='deleteButton btn btn-danger' href=index.php?action=deleteBillet&idBillet=$value[2]>Supprimer</a>";
+                        echo '</div>';
                         echo '<br />';
                     }
                 }
