@@ -6,14 +6,13 @@ forceConnection('login');
 
 class CommentsManager extends ConnexionManager{
     public function createCommentInDb(){
-        $req = $this->dbConnect()->prepare("INSERT INTO comments(article_id, comment, author, creation_date, moderated, report) VALUES(:article_id, :comment, :author, :creation_date, :moderated, :report)");
+        $req = $this->dbConnect()->prepare("INSERT INTO comments(article_id, comment, author, creation_date, moderated) VALUES(:article_id, :comment, :author, :creation_date, :moderated)");
         $comment = new Comment;
         $comment->setArticleId(intval($_POST['idBillet']));
         $comment->setComment(htmlspecialchars($_POST['newCommentContent']));
         $comment->setAuthor($_SESSION['userId']);
         $comment->setCreationDate(date("Y-m-d H:i:s"));
         $comment->setModerated(0);
-        $comment->setReport(0);
 
         $req->execute(array(
             'article_id' => $comment->getArticleId(),      
@@ -21,7 +20,6 @@ class CommentsManager extends ConnexionManager{
             'author'=> $comment->getAuthor(),
             'creation_date' => $comment->getCreationDate(),
             'moderated' => $comment->getModerated(),
-            'report' => $comment->getReport()
         )); 
 
         $req->closeCursor();
@@ -49,21 +47,23 @@ class CommentsManager extends ConnexionManager{
         return $comments;
     }
 
-    // public function addReport($idComment){
-    //     $req = $this->dbConnect()->prepare('SELECT report FROM comments WHERE id=:idComment');
-    //     $req->bindParam(':idComment', $idComment, PDO::PARAM_INT);
-    //     $req->execute();
-    //     $nbOfReports = $req->fetch();
-    //     $nbOfReports = $nbOfReports['report'];
-    //     $req->closeCursor();
+    public function displayCommentsByNbOfReportsInDb(){
+        $comments = array();
+        $req = $this->dbConnect()->query('SELECT comments.id AS idComment, comments.comment AS commentContent, COUNT(reports.id) FROM comments JOIN reports ON comments.id = reports.id_comment WHERE comments.moderated=0 GROUP BY idComment');
+        while($result = $req->fetch()){
+            $commentId = $result['idComment'];
+            $commentContent = $result['commentContent'];
+            $nbOfReport = $result['COUNT(reports.id)'];
+            $comments[] = array($commentId, $commentContent, $nbOfReport);
+        };
+        $req->closeCursor();
+        return $comments;
+    }
 
-    //     $req = $this->dbConnect()->prepare('UPDATE comments SET report=:report WHERE id=:idComment');
-    //     $nbOfReports = $nbOfReports + 1;
-    //     $req->bindParam(':report', $nbOfReports, PDO::PARAM_INT);
-    //     $req->bindParam(':idComment', $idComment, PDO::PARAM_INT);
-    //     $req->execute();
-    //     $req->closeCursor();
-
-        
-    // }
+    public function commentValidationInDb($idComment){
+        $req = $this->dbConnect()->prepare('UPDATE comments SET moderated=1 WHERE id=:id');
+        $req->bindParam(':id', $idComment, PDO::PARAM_INT);
+        $req->execute();
+        $req->closeCursor();
+    }
 }

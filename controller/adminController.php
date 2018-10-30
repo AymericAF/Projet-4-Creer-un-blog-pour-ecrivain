@@ -11,7 +11,8 @@ function login(){
         if($user->getAccess_level() ==='admin' && password_verify($_POST['password'], $user->getPassword())){
             $_SESSION['access_level'] = 'admin';
             $_SESSION['userId'] = $user->getId();
-            read('backoffice');
+            addMessage('success', 'Vous vous êtes connecté avec succès.');
+            read('backoffice','',1);
         } elseif($user->getAccess_level()==='user' && password_verify($_POST['password'], $user->getPassword())){
             $_SESSION['access_level'] = 'user';
             $_SESSION['userId'] = $user->getId();
@@ -21,12 +22,11 @@ function login(){
         } else{
             $_SESSION['access_level'] = 'not_valid';
             addMessage('warning', 'Votre user et/ou votre mot de passe ne sont pas valides. Veuillez vérifier ces informations.');
-            // $erreurAdmin = "Votre user et/ou votre mot de passe ne sont pas valides. Veuillez vérifier ces informations";
             require_once(__DIR__.'/../view/admin.php');
         }
     } else{
         $_SESSION['access_level'] = 'not_valid';
-        $erreurAdmin = "Vous n'avez pas saisi votre user et/ou votre mot de passe. Veuillez saisir ces informations.";
+        addMessage('warning', "Vous n'avez pas saisi votre user et/ou votre mot de passe. Veuillez saisir ces informations.");
         require_once(__DIR__.'/../view/admin.php');
     }  
 }
@@ -49,5 +49,9 @@ function seDeconnecter(){
         );
     };
     session_destroy();
-    header("location:".  $_SERVER['HTTP_REFERER']); 
+    require_once(__DIR__.'/../view/accueil.php');
+}
+
+function viewBackoffice($page){
+    read('backoffice','', $page);
 }

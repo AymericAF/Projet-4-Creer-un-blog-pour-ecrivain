@@ -12,7 +12,7 @@ forceConnection('login');
                 <div class='col-md-6'>
                     <p class='bold'>Vous avez un compte utilisateur? </p>
                     <p>Veuillez saisir les informations ci-dessous pour vous connecter.</p>
-                    <form class='col-12' id='test' method="post" action='<?php echo ROOT.'/index.php';?>'>
+                    <form class='col-12' method="post" action='<?php echo ROOT.'/index.php';?>'>
                         <div class='form-group'>
                             <label for="pseudo">Pseudo :</label>
                             <input type="text" name="pseudo" id="pseudo">
@@ -58,14 +58,14 @@ forceConnection('login');
                     }
                     ?>
                 </div>
-                
-            </div>
-            <?php if(isset($_SESSION['message'])){
-                    echo "<div class='container alert alert-".$_SESSION['messageType']." divSousHeader'>";
+                <?php if(isset($_SESSION['message'])){
+                    echo "<div class='container alert alert-".$_SESSION['messageType']." '>";
                     echo "<p>".$_SESSION['message']."</p>";
                     echo "</div>";
                     unset($_SESSION['message']);
                 } ?>
+            </div>
+
         </div>
         <?php require_once(__DIR__.'/footer.php'); ?>
         </div>

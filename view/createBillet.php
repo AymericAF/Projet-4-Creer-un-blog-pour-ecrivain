@@ -16,14 +16,20 @@
 
     <body>
         <?php require_once(__DIR__.'/header.php');?>
-        <h1>Création de billet</h1>
-        <form method='post' action='<?php echo ROOT.'/index.php';?>'>
-            <label for='newBilletTitle'>Titre</label>
-            <input type='text' name='newBilletTitle' id='newBilletTitle'>
-            <label for='newBilletContent'>Contenu du billet</label>
-            <textarea class='tinyText' name='newBilletContent' id='newBilletContent'></textarea>
-            <input type="submit" value='Enregistrer'>   
-            <input type="hidden" name='action' value='createBillet'>     
+        <!-- <h1>Création de billet</h1> -->
+        <form class='container divSousHeaderAdmin' method='post' action='<?php echo ROOT.'/index.php';?>'>
+            <div class='form-group'>
+                <label for='newBilletTitle'>Titre</label>
+                <input type='text' name='newBilletTitle' id='newBilletTitle'>
+            </div>
+            <div class='form-group'>
+                <label for='newBilletContent'>Contenu du billet</label>
+                <textarea class='tinyText' name='newBilletContent' id='newBilletContent'></textarea>
+            </div>
+            <div class='form-group'>
+                <input class='btn btn-primary' type="submit" value='Enregistrer'>   
+                <input type="hidden" name='action' value='createBillet'>
+            </div>     
         </form>
       
         <?php 
@@ -31,7 +37,8 @@
                 echo '<p>'.$confirmationMessage.'</p>';
             }
         ?>
-  
+        <?php require_once(__DIR__.'/footerBackoffice.php');?>
+        </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

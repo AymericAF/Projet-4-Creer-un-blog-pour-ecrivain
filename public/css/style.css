@@ -4,7 +4,9 @@ body{
     padding: 0px;
     border: 0px;
 }
-
+.container{
+    z-index: 1;
+}
 h1{
     font-family: 'Gloria Hallelujah', cursive;
     margin: 0;
@@ -78,7 +80,7 @@ ul{
 }
 
 .divSousHeaderAdmin{
-    top: 100px;
+    top: 120px;
     position: relative;
 }
 
@@ -98,7 +100,6 @@ ul{
     position: absolute;
     font-family: 'Gloria Hallelujah', cursive;
     font-size: 4rem;
-
 }
 img{
     margin-left: auto;
@@ -158,7 +159,7 @@ footer p{
     margin-right: auto;
 }
 
-.test{
+.titleModify{
     width: 100%;
     border: 0px;
 }
@@ -182,6 +183,6 @@ footer p{
         height: 150px;
     }
     .divSousHeaderAdmin{
-        top: 150px;
+        top: 170px;
     }
 }

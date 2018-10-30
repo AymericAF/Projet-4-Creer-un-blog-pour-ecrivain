@@ -43,8 +43,11 @@ if(isset($_REQUEST['action'])){
             break;
         case 'backofficeView' :
             require_once(__DIR__.'/controller/adminController.php');
-            require_once(__DIR__.'/controller/billetController.php');
-            read('backoffice');
+            if(isset($_GET['page'])){
+                viewBackoffice($_GET['page']);
+            }else{
+                viewBackoffice(1);
+            }
             break;
         case 'displayBilletToModify' :
             require_once(__DIR__.'/controller/billetController.php');
@@ -83,6 +86,15 @@ if(isset($_REQUEST['action'])){
             require_once(__DIR__.'/controller/reportController.php');
             $_SESSION['url'] = $_SERVER['HTTP_REFERER'];
             createReport($_GET['idComment'], $_SESSION['userId']);
+            break;
+        case 'moderateView' :
+            require_once(__DIR__.'/controller/moderateController.php');
+            moderateView();
+            break;
+        case 'commentValidation' :
+            require_once(__DIR__.'/controller/commentController.php');
+            $_SESSION['url'] = $_SERVER['HTTP_REFERER'];
+            commentValidation($_GET['idComment']);
             break;
         default:
             require_once(__DIR__.'/controller/accueilController.php');
