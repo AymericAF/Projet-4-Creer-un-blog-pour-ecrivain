@@ -7,11 +7,14 @@ require_once(__DIR__.'/../model/BilletsManager.php');
 forceConnection('accueil');
 
 function createComment(){
-    if(isset($_POST['idBillet']) && is_int(intval($_POST['idBillet'])) && !empty($_POST['newCommentContent'])){
+    $_POST['idBillet'] = intval($_POST['idBillet']);
+    if(isset($_POST['idBillet']) && is_int($_POST['idBillet']) && !empty($_POST['newCommentContent'])){
         $comment = new CommentsManager();
         $comment->createCommentInDb();  
+        addMessage('success', 'Votre commentaire a été publié.');
+    } else{
+        addMessage('warning', "Vous n'avez pas saisi de commentaire.");
     }
-    addMessage('success', 'Votre commentaire a été publié.');
     header("location:".  $_SESSION['url']);
     unset($_SESSION['url']);
 }
@@ -29,3 +32,15 @@ function displayViewCreateComment($idBillet){
     }
 }
 
+function commentValidation($idComment){
+    $idComment = intval($idComment);
+    if(isset($idComment) && is_int($idComment)){
+        $comments = new CommentsManager();
+        $comments = $comments->commentValidationInDb($idComment);
+        addMessage('success', 'Le commentaire a été validé.');
+    } else{
+        addMessage('warning', "L'identifiant du commentaire n'est pas valide.");
+    }
+    header("location:".  $_SESSION['url']);
+    unset($_SESSION['url']);
+}

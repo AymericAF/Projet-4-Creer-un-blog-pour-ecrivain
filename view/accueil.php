@@ -38,17 +38,7 @@ forceConnection('accueil');
         ?>
         <nav aria-label="Page navigation">
             <ul class="pagination container">
-                
-                <li class="page-item"><a class="page-link" href='index.php?action=accueil&page=.
-                <?php 
-                    if($page==0){
-                        $page = 1; 
-                        echo $page;
-                        } else{
-                            $page = $page - 1 ;
-                            echo $page;
-                            };
-                ?>>Page précédente</a></li>
+                <li class="page-item"><a class="page-link" href='index.php?action=accueil&page=<?php if(($page-1) == 0){echo $page;}else{echo ($page-1);}; ?>'>Page précédente</a></li>
                 <?php 
                     $i = 1;
                     while($i <= $maxNbOfPage) {
@@ -56,7 +46,7 @@ forceConnection('accueil');
                         $i++;
                     };
                 ?>
-                <li class="page-item"><a class="page-link" href='index.php?action=accueil&page='$page+1>Page suivante</a></li>
+                <li class="page-item"><a class="page-link" href='index.php?action=accueil&page=<?php if(($page+1)>$maxNbOfPage){echo $page;}else{echo ($page+1);}?>'>Page suivante</a></li>
             </ul>
         </nav>
         <?php   

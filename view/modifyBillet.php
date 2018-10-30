@@ -21,7 +21,7 @@
         <form class='container divSousHeaderAdmin padding-top-20' method='post' action='<?php echo ROOT.'/index.php';?>'>
             <div class='form-group'>
                 <label class='bold' for='newBilletTitle'>Titre :</label>
-                <input class='test' type='text' name='newBilletTitle' id='newBilletTitle' value="<?php if(isset($billet)){echo $billet->getTitle();}?>">
+                <input class='titleModify' type='text' name='newBilletTitle' id='newBilletTitle' value="<?php if(isset($billet)){echo $billet->getTitle();}?>">
             </div>
             <div class='form-group'>
                 <label class='bold' for='newBilletContent'>Contenu du billet :</label>
@@ -33,7 +33,7 @@
                 <input type="hidden" name='action' value='modifyBillet'>  
             </div>
         </form>
-        <?php require_once(__DIR__.'/footer.php'); ?>
+        <?php require_once(__DIR__.'/footerBackoffice.php'); ?>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

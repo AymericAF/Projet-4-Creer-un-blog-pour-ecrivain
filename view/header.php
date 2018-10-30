@@ -25,6 +25,7 @@
                 <ul class='nav'> 
                     <li class='nav-item'><a class='connect nav-link' href='<?php echo ROOT.'/index.php?action=backofficeView'; ?>'>Accueil</a></li>
                     <li class='nav-item'><a class='connect nav-link' href='<?php echo ROOT.'/index.php?action=createBilletDisplayView'; ?>'>Nouveau Billet</a></li>
+                    <li class='nav-item'><a class='connect nav-link' href='<?php echo ROOT.'/index.php?action=moderateView'; ?>'>Modération</a></li>
                 </ul>
             
             </nav>

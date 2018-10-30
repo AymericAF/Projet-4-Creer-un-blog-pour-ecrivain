@@ -18,7 +18,8 @@ function modifyBillet($id){
     if(isset($_POST['newBilletTitle']) && isset($_POST['newBilletContent'])){
         $billet = new BilletsManager();
         $billet->modifyBilletInDb($id);
-        read('backoffice', 'Votre billet a bien été modifié');
+        addMessage('success', 'Votre billet a bien été modifié.');
+        read('backoffice', '', 1);
     }
 }
 
@@ -42,6 +43,7 @@ function displayViewModifyBillet(){
 function deleteBillet($id){
     $billet = new BilletsManager();
     $billet->deleteBilletInDb($id);
-    read('backoffice', 'Le billet a bien été supprimé.');
+    addMessage('danger', 'Le billet a bien été supprimé.');
+    read('backoffice', '', 1);
 }
 
