@@ -44,3 +44,17 @@ function commentValidation($idComment){
     header("location:".  $_SESSION['url']);
     unset($_SESSION['url']);
 }
+
+function deleteComment($idComment){
+    $idComment = intval($idComment);
+    
+    if(isset($idComment) && is_int($idComment)){
+        $comments = new CommentsManager();
+        $comments = $comments->deleteCommentInDb($idComment);
+        addMessage('danger', 'Le commentaire a été supprimé.');
+    } else{
+        addMessage('warning', "L'identifiant du commentaire n'est pas valide.");
+    }
+    header("location:".  $_SESSION['url']);
+    unset($_SESSION['url']);
+}

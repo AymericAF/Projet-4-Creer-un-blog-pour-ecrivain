@@ -96,6 +96,11 @@ if(isset($_REQUEST['action'])){
             $_SESSION['url'] = $_SERVER['HTTP_REFERER'];
             commentValidation($_GET['idComment']);
             break;
+        case 'deleteComment' :
+            require_once(__DIR__.'/controller/commentController.php'); 
+            $_SESSION['url'] = $_SERVER['HTTP_REFERER'];
+            deleteComment($_GET['idComment']);
+            break;
         default:
             require_once(__DIR__.'/controller/accueilController.php');
             viewHome(1);

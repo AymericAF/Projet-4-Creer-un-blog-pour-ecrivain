@@ -23,13 +23,5 @@ function createReport($id_comment, $id_author){
     unset($_SESSION['url']);
 }
 
-function checkIfUserReportComment($id_author, $id_comment){
-    $id_comment = intval($id_comment);
-    $id_author = intval($id_author);
-    if(isset($id_comment) && isset($id_author) && is_int($id_comment) && is_int($id_author)){
-        $report = new ReportsManager();
-        $resultCheck = $report->checkIfUserReportCommentInDb($id_author, $id_comment);
-        return($resultCheck);
-    }
-}
+
 

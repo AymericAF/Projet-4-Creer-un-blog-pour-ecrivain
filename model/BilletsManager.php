@@ -90,16 +90,6 @@ class BilletsManager extends ConnexionManager{
         $req->closeCursor();
     }
 
-    // public function deleteBilletInDb($id){
-    //     $id=intval($id);
-    //     var_dump($id);
-    //     $req = $this->dbConnect()->prepare('DELETE FROM articles WHERE id=:id');
-    //     $req->execute(array(
-    //         'id' => $id
-    //     ));
-    //     $req->closeCursor(); 
-    // }
-
     public function deleteBilletInDb($id){
         $id=intval($id);
         $req = $this->dbConnect()->prepare('DELETE reports FROM reports INNER JOIN comments ON reports.id_comment = comments.id WHERE comments.article_id = :id');

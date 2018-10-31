@@ -5,7 +5,7 @@ require_once(__DIR__.'/../controller_utils.php');
 forceConnection('accueil');
 
 function viewHome($page){
-    read('accueil','', $page);
+    read('accueil', $page);
 }
 
 function userLogin(){

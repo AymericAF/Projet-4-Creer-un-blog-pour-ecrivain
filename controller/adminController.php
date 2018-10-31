@@ -12,7 +12,7 @@ function login(){
             $_SESSION['access_level'] = 'admin';
             $_SESSION['userId'] = $user->getId();
             addMessage('success', 'Vous vous êtes connecté avec succès.');
-            read('backoffice','',1);
+            read('backoffice', 1);
         } elseif($user->getAccess_level()==='user' && password_verify($_POST['password'], $user->getPassword())){
             $_SESSION['access_level'] = 'user';
             $_SESSION['userId'] = $user->getId();
@@ -53,5 +53,5 @@ function seDeconnecter(){
 }
 
 function viewBackoffice($page){
-    read('backoffice','', $page);
+    read('backoffice', $page);
 }

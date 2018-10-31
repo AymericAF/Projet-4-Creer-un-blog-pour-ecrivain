@@ -6,7 +6,7 @@ forceConnection('accueil');
 
         <?php pageTitle('Accueil');
             require_once('headerUser.php');?>
-        <!-- </div> -->
+       
         <div id='title'>
             <h2>Billet simple pour l'Alaska</h2>
             <img src='public\image\aurora-1185464_1920.jpg' class="img-fluid" alt="Aurore boréale en Alaska">
