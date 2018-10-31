@@ -38,8 +38,7 @@ forceConnection('accueil');
                         echo '<p>'.$value[2].'</p>';
                         if(isset($_SESSION['userId'])){
                             if($value[5]!= 1){
-                                $testReport = checkIfUserReportComment($_SESSION['userId'], $value[0]);
-                                if(intval($testReport[0])){
+                                if($value[6]==1){
                                     echo "<p class=smallMessage>Vous avez déjà signalé ce commentaire.</p>";
                                 } else{
                                     echo "<a role='button' class='commentButton btn btn-primary' href=index.php?action=reportAComment&idComment=".$value[0].">Signaler le commentaire</a>";
@@ -63,3 +62,4 @@ forceConnection('accueil');
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
+    

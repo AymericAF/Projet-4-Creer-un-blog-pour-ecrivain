@@ -25,23 +25,50 @@ class CommentsManager extends ConnexionManager{
         $req->closeCursor();
     }
 
-    public function readCommentsInDb($article_id){
+    public function readCommentsInDb($article_id, $idUser=''){
         $comments=array();
         $article_id = intval($article_id);
-        
-        $req = $this->dbConnect()->prepare("SELECT * , DATE_FORMAT(comments.creation_date, '%d-%m-%y à %H:%i:%s') AS niceDate, comments.id AS idComment FROM comments JOIN users ON comments.author = users.id WHERE article_id=:article_id ORDER BY comments.id DESC");
-        $req->bindParam(':article_id', $article_id, PDO::PARAM_INT);
-        $req->execute();
-        
-        while($result = $req->fetch()){
-            $commentId = $result['idComment'];
-            $commentArticleId = $result['article_id'];
-            $commentContent = $result['comment'];
-            $commentAuthor = $result['pseudo'];
-            $commentCreationDate = $result['niceDate'];
-            $commentModerated = $result['moderated'];
-            $comments[] = array($commentId, $commentArticleId, $commentContent, $commentAuthor, $commentCreationDate, 
-            $commentModerated);
+
+        if($idUser == null){
+            $req = $this->dbConnect()->prepare("SELECT * , DATE_FORMAT(comments.creation_date, '%d-%m-%y à %H:%i:%s') AS niceDate, comments.id AS idComment FROM comments JOIN users ON comments.author = users.id WHERE article_id=:article_id ORDER BY comments.id DESC");
+            $req->bindParam(':article_id', $article_id, PDO::PARAM_INT);
+            $req->execute();
+    
+            while($result = $req->fetch()){
+                $commentId = $result['idComment'];
+                $commentArticleId = $result['article_id'];
+                $commentContent = $result['comment'];
+                $commentAuthor = $result['pseudo'];
+                $commentCreationDate = $result['niceDate'];
+                $commentModerated = $result['moderated'];
+                $userReport = 0;
+                $comments[] = array($commentId, $commentArticleId, $commentContent, $commentAuthor, $commentCreationDate, 
+                $commentModerated, $userReport);
+            }
+        } else{
+            $req = $this->dbConnect()->prepare("SELECT * , DATE_FORMAT(comments.creation_date, '%d-%m-%y à %H:%i:%s') AS niceDate, comments.id AS idComment FROM comments JOIN users ON comments.author = users.id WHERE article_id=:article_id ORDER BY comments.id DESC");
+            $req->bindParam(':article_id', $article_id, PDO::PARAM_INT);
+            $req->execute();
+    
+            while($result = $req->fetch()){
+                $commentId = $result['idComment'];
+                $commentArticleId = $result['article_id'];
+                $commentContent = $result['comment'];
+                $commentAuthor = $result['pseudo'];
+                $commentCreationDate = $result['niceDate'];
+                $commentModerated = $result['moderated'];
+                $req2 = $this->dbConnect()->query("SELECT COUNT(*) as 'nombre' FROM reports WHERE id_comment = $commentId AND id_author = $idUser");
+                $result2 = $req2->fetch();
+                $userReport = $result2['nombre'];
+                if($userReport>=1){
+                    $userReport = 1;
+                } else{
+                    $userReport = 0;
+                }
+                $comments[] = array($commentId, $commentArticleId, $commentContent, $commentAuthor, $commentCreationDate, 
+                $commentModerated, $userReport);
+            }
+           
         }
         $req->closeCursor();
         return $comments;
@@ -65,5 +92,20 @@ class CommentsManager extends ConnexionManager{
         $req->bindParam(':id', $idComment, PDO::PARAM_INT);
         $req->execute();
         $req->closeCursor();
+    }
+
+    public function deleteCommentInDb($idComment){
+        $idComment=intval($idComment);
+        $req = $this->dbConnect()->prepare('DELETE reports FROM reports INNER JOIN comments ON reports.id_comment = comments.id WHERE comments.id = :idComment');
+        $req->execute(array(
+            'idComment' => $idComment
+        ));
+        $req->closeCursor();
+
+        $req2 = $this->dbConnect()->prepare('DELETE FROM comments WHERE id = :idComment2');
+        $req2->execute(array(
+            'idComment2' => $idComment
+        ));
+        $req2->closeCursor();
     }
 }

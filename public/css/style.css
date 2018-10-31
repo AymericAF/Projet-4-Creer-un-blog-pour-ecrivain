@@ -140,8 +140,6 @@ img{
     background-color: #e4e2ec75;
 }
 
-
-
 /* Footer */
 footer{
     background-color: #2A6564;
@@ -162,6 +160,14 @@ footer p{
 .titleModify{
     width: 100%;
     border: 0px;
+}
+
+.margin-right-10{
+    margin-right: 10px;
+}
+
+.margin-bottom-10{
+    margin-bottom: 10px;
 }
 
 /* Responsive */

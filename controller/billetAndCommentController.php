@@ -30,7 +30,11 @@ function displayBilletWithComments($idBillet){
         $billets = new BilletsManager();
         $billet = $billets->readOneArticle($idBillet);
         $comments = new CommentsManager();
-        $commentsTab = $comments->readCommentsInDb($idBillet);
+        if(isset($_SESSION['userId'])){
+            $commentsTab = $comments->readCommentsInDb($idBillet, $_SESSION['userId']);
+        } else{
+            $commentsTab = $comments->readCommentsInDb($idBillet);
+        }
         require_once(__DIR__.'/../view/article.php');
     } else{
         require_once(__DIR__.'/../view/accueil.php');

@@ -18,17 +18,4 @@ class ReportsManager extends ConnexionManager{
         $req->closeCursor();
     }
 
-    public function checkIfUserReportCommentInDb($user, $id_comment){
-        $reports = array();
-        $req = $this->dbConnect()->prepare('SELECT EXISTS (SELECT * FROM reports WHERE id_author=:user AND id_comment=:id_comment)');
-        $req->bindParam(':user', $user, PDO::PARAM_INT);
-        $req->bindParam(':id_comment', $id_comment, PDO::PARAM_INT);
-
-        $req->execute();
-
-        $result = $req->fetch();
-        return $result;
-        $req->closeCursor();
-        
-    } 
 }

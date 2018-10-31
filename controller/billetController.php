@@ -19,7 +19,7 @@ function modifyBillet($id){
         $billet = new BilletsManager();
         $billet->modifyBilletInDb($id);
         addMessage('success', 'Votre billet a bien été modifié.');
-        read('backoffice', '', 1);
+        read('backoffice', 1);
     }
 }
 
@@ -44,6 +44,6 @@ function deleteBillet($id){
     $billet = new BilletsManager();
     $billet->deleteBilletInDb($id);
     addMessage('danger', 'Le billet a bien été supprimé.');
-    read('backoffice', '', 1);
+    read('backoffice', 1);
 }
 
