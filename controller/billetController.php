@@ -24,26 +24,55 @@ function modifyBillet($id){
 }
 
 function displayViewCreateBillet(){
+    $nbOfReportsNotModerated = displayNbOfReportsNotModerated();
     require_once(__DIR__.'/../view/createBillet.php');
 }
 
 function displayBilletToModify($id){
     $id = intval($id);
-    if(isset($id) && !empty($id) && is_int($id)){
+
+    $idCheckResult = checkIdBilletExist($id);
+  
+    if($idCheckResult == 0){
+        addMessage('warning', "L'identifiant utilisé n'est pas valide.");
+        read('backoffice', 1);
+    } else{
         $billetToModify = new BilletsManager();
         $billet = $billetToModify->getBilletById($id);    
         require_once(__DIR__.'/../view/modifyBillet.php');
-    } else echo 'Il y a qq chose qui ne va pas';
+    }
 }
 
 function displayViewModifyBillet(){
     require_once(__DIR__.'/../view/modifyBillet.php');
 }
 
-function deleteBillet($id){
-    $billet = new BilletsManager();
-    $billet->deleteBilletInDb($id);
-    addMessage('danger', 'Le billet a bien été supprimé.');
-    read('backoffice', 1);
+function displayBackofficeView(){
+    require_once(__DIR__.'/../view/backoffice.php');
 }
 
+function deleteBillet($id){
+    $idCheckResult = checkIdBilletExist($id);
+  
+    if($idCheckResult == 0){
+        addMessage('warning', "L'identifiant utilisé n'est pas valide.");
+        read('backoffice', 1);
+    } else{
+        $billet = new BilletsManager();
+        $billet->deleteBilletInDb($id);
+        addMessage('danger', 'Le billet a bien été supprimé.');
+        read('backoffice', 1);
+    }
+}
+
+function checkIdBilletExist($id){
+    $idBilletToCheck = new BilletsManager();
+    $idBilletToCheck = $idBilletToCheck->getBilletById($id);
+    $idBilletToCheck = $idBilletToCheck->getId(); 
+    if($idBilletToCheck == null){
+        $idCheckResult = 0;
+    } else{
+        $idCheckResult = 1;
+    }
+    return $idCheckResult;
+}

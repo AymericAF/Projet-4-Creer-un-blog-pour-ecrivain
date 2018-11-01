@@ -5,12 +5,15 @@ if(isset($_SESSION)){
     session_start();
 }
 
+
+
 require_once(__DIR__.'/config.php');
 require_once(__DIR__.'/controller/adminController.php');
 require_once(__DIR__.'/controller/billetController.php');
 require_once(__DIR__.'/controller/accueilController.php');
 require_once(__DIR__.'/controller/commentController.php');
-
+require_once(__DIR__.'/controller/moderateController.php');
+    // $nbOfReportsNotModerated = displayNbOfReportsNotModerated();
 // Routeur vers les différents Controller
 if(isset($_REQUEST['action'])){
     switch ($_REQUEST['action']) {

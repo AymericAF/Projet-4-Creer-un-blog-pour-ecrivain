@@ -17,5 +17,4 @@ class ReportsManager extends ConnexionManager{
         ));
         $req->closeCursor();
     }
-
 }

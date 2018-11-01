@@ -27,15 +27,15 @@ function newUser($pseudo, $email, $password, $passwordConfirmation){
             $usersCheckEmail = new Users();
             $userCheckEmail = $usersCheckEmail->getUserInformationWithEmail($email);
             if(!empty($userCheckEmail->getMail_address())){
-                $message = 'Cette adresse e-mail est déjà utilisée.';
+                addMessage('warning', 'Cette adresse e-mail est déjà utilisée.');
                 require_once(__DIR__.'/../view/admin.php');
             } elseif(!empty($userCheckPseudo->getPseudo())){
-                $message = 'Ce Pseudo est déjà utilisé. Veuillez en saisir un autre.';
+                addMessage('warning', 'Ce Pseudo est déjà utilisé. Veuillez en saisir un autre.');
                 require_once(__DIR__.'/../view/admin.php');
                } else{
                     $users = new Users();
                     $users->newUserInDb($pseudo, $email, $password, $passwordConfirmation);
-                    $message = 'Votre compte utilisateur a bien été créé. Vous pouvez l\'utiliser dès à présent.';
+                    addMessage('success', 'Votre compte utilisateur a bien été créé. Vous pouvez l\'utiliser dès à présent.');
                     require_once(__DIR__.'/../view/admin.php');
                }
         }

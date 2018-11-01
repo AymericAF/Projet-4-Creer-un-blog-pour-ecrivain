@@ -76,7 +76,7 @@ class CommentsManager extends ConnexionManager{
 
     public function displayCommentsByNbOfReportsInDb(){
         $comments = array();
-        $req = $this->dbConnect()->query('SELECT comments.id AS idComment, comments.comment AS commentContent, COUNT(reports.id) FROM comments JOIN reports ON comments.id = reports.id_comment WHERE comments.moderated=0 GROUP BY idComment');
+        $req = $this->dbConnect()->query('SELECT comments.id AS idComment, comments.comment AS commentContent, COUNT(reports.id) FROM comments JOIN reports ON comments.id = reports.id_comment WHERE comments.moderated=0 GROUP BY idComment ORDER BY COUNT(reports.id) DESC');
         while($result = $req->fetch()){
             $commentId = $result['idComment'];
             $commentContent = $result['commentContent'];
@@ -107,5 +107,13 @@ class CommentsManager extends ConnexionManager{
             'idComment2' => $idComment
         ));
         $req2->closeCursor();
+    }
+
+    public function displayNbOfReportsNotModeratedInDb(){
+        $req = $this->dbConnect()->query('SELECT comments.id AS idComment, COUNT(reports.id) FROM comments JOIN reports ON comments.id = reports.id_comment WHERE comments.moderated = 0');
+        $result = $req->fetch();
+        $nbOfReportsNotModerated = $result['COUNT(reports.id)'];
+        $req->closeCursor();
+        return $nbOfReportsNotModerated;
     }
 }
