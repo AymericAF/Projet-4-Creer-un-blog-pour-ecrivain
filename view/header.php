@@ -1,6 +1,8 @@
 <?php 
     require_once(__DIR__.'/../utils.php');
     forceConnection('login');
+    require_once(__DIR__.'/../controller/moderateController.php');
+    $nbOfReportsNotModerated = displayNbOfReportsNotModerated();
 ?>
 
 <div class='container-fluid full-width'>
@@ -25,7 +27,7 @@
                 <ul class='nav'> 
                     <li class='nav-item'><a class='connect nav-link' href='<?php echo ROOT.'/index.php?action=backofficeView'; ?>'>Accueil</a></li>
                     <li class='nav-item'><a class='connect nav-link' href='<?php echo ROOT.'/index.php?action=createBilletDisplayView'; ?>'>Nouveau Billet</a></li>
-                    <li class='nav-item'><a class='connect nav-link' href='<?php echo ROOT.'/index.php?action=moderateView'; ?>'>Modération</a></li>
+                    <li class='nav-item '><a class='connect nav-link' href='<?php echo ROOT.'/index.php?action=moderateView'; ?>'>Modération <span class='badge badge-primary'><?php echo $nbOfReportsNotModerated;?></span></a></li>
                 </ul>
             
             </nav>

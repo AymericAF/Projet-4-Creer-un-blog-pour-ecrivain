@@ -17,8 +17,7 @@ function login(){
             $_SESSION['access_level'] = 'user';
             $_SESSION['userId'] = $user->getId();
             addMessage('success', 'Vous vous êtes connecté avec succès.');
-            header("location:".  $_SESSION['url']); 
-
+            read('accueil', 1);
         } else{
             $_SESSION['access_level'] = 'not_valid';
             addMessage('warning', 'Votre user et/ou votre mot de passe ne sont pas valides. Veuillez vérifier ces informations.');
@@ -53,5 +52,8 @@ function seDeconnecter(){
 }
 
 function viewBackoffice($page){
+    if($page == 0){
+        $page = 1;
+    }
     read('backoffice', $page);
 }
