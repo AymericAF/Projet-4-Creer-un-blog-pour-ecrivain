@@ -20,6 +20,7 @@ function displayArticleComments($idBillet){
         $commentsTab = $comments->readCommentsInDb($idBillet);
         require_once(__DIR__.'/../view/article.php');
     } else{
+        header("http/1.1 404 Not Found");
         require_once(__DIR__.'/../view/accueil.php');
     }
 }
@@ -37,6 +38,7 @@ function displayBilletWithComments($idBillet){
         }
         require_once(__DIR__.'/../view/article.php');
     } else{
+        header("http/1.1 404 Not Found");
         require_once(__DIR__.'/../view/accueil.php');
     }
 }
