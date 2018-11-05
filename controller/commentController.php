@@ -15,6 +15,7 @@ function createComment(){
     } else{
         addMessage('warning', "Vous n'avez pas saisi de commentaire.");
     }
+    header("http/1.1 404 Not Found");
     header("location:".  $_SESSION['url']);
     unset($_SESSION['url']);
 }
@@ -39,6 +40,7 @@ function commentValidation($idComment){
         $comments = $comments->commentValidationInDb($idComment);
         addMessage('success', 'Le commentaire a été validé.');
     } else{
+        header("http/1.1 404 Not Found");
         addMessage('warning', "L'identifiant du commentaire n'est pas valide.");
     }
     header("location:".  $_SESSION['url']);
@@ -53,6 +55,7 @@ function deleteComment($idComment){
         $comments = $comments->deleteCommentInDb($idComment);
         addMessage('danger', 'Le commentaire a été supprimé.');
     } else{
+        header("http/1.1 404 Not Found");
         addMessage('warning', "L'identifiant du commentaire n'est pas valide.");
     }
     header("location:".  $_SESSION['url']);

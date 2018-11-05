@@ -18,8 +18,8 @@ function userLogin(){
 
 function newUser($pseudo, $email, $password, $passwordConfirmation){
     if(isset($pseudo) && !empty($pseudo) && isset($email) && !empty($email) && isset($password) && !empty($password) && isset($passwordConfirmation) && !empty($passwordConfirmation)){
-        if($password!==$passwordConfirmation){
-            $message = 'Le mot de passe saisi et sa confirmation sont différents. Veuillez saisir le même mot de passe dans ces 2 champs.';
+        if($password!==$passwordConfirmation){  
+            addMessage('warning', 'Le mot de passe saisi et sa confirmation sont différents. Veuillez saisir le même mot de passe dans ces 2 champs.');
             require_once(__DIR__.'/../view/admin.php');
         } else{
             $usersCheckPseudo = new Users();
@@ -41,7 +41,7 @@ function newUser($pseudo, $email, $password, $passwordConfirmation){
         }
 
     } else{
-    $message = 'Certaines informations n\'ont pas été saisie.';
+    addMessage('warning', 'Certaines informations n\'ont pas été saisie.');
     require_once(__DIR__.'/../view/admin.php');
     }
 }

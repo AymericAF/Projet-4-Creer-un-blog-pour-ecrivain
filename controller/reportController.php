@@ -14,9 +14,11 @@ function createReport($id_comment, $id_author){
             addMessage('success', 'Vous avez signalé un commentaire à un modérateur qui fera le nécessaire dans les plus bref délai.');
             
         } else{
+            header("http/1.1 404 Not Found");
             addMessage('warning', "Les identifiants de commentaires ou d'auteurs ne sont pas valides.");
         }
     } else{
+        header("http/1.1 404 Not Found");
         addMessage('warning', "Les identifiants de commentaires ou d'auteurs ne sont pas valides.");
     }
     header("location:".  $_SESSION['url']);

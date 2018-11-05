@@ -11,7 +11,7 @@ function read($view, $page){
     $page = intval($page);
     
     if(is_int($page)){
-        if($page < 0){
+        if($page <= 0){
             $page = 1;
         }
         if($page > $maxNbOfPage){

@@ -2,6 +2,7 @@
 require_once(__DIR__.'/../utils.php');
 require_once(__DIR__.'/../controller_utils.php');
 forceConnection('accueil');
+// Récupération des données à partir de la fonction read() dans controller_utils.php
 ?>
 
         <?php pageTitle('Accueil');
@@ -9,7 +10,7 @@ forceConnection('accueil');
        
         <div id='title'>
             <h2>Billet simple pour l'Alaska</h2>
-            <img src='public\image\aurora-1185464_1920.jpg' class="img-fluid" alt="Aurore boréale en Alaska">
+            <img src='public/image/aurora-1185464_1920.jpg' class="img-fluid" alt="Aurore boréale en Alaska">
         </div>
         
         
@@ -26,9 +27,9 @@ forceConnection('accueil');
                 echo "<div class='row'>";
                 foreach($billets as $value){
                     echo "<div class='col-12 col-sm-4'>";
-                    echo "<a role='button' class='articleLink' href=index.php?action=articleView&idBillet=$value[2]><h2>$value[0]</h2></a>";
+                    echo "<a role='button' class='articleLink' href='index.php?action=articleView&idBillet=$value[2]'><h2>$value[0]</h2></a>";
                     echo "<p>".substr($value[1], 0, 200)."..."."</p>";
-                    echo "<a role='button' class='articleLink btn btn-primary' href=index.php?action=articleView&idBillet=$value[2]>Lire la suite</a>";
+                    echo "<a role='button' class='articleLink btn btn-primary' href='index.php?action=articleView&idBillet=$value[2]'>Lire la suite</a>";
                     echo '<br />';
                     echo "</div>";
                 }
@@ -38,15 +39,16 @@ forceConnection('accueil');
         ?>
         <nav aria-label="Page navigation">
             <ul class="pagination container">
-                <li class="page-item"><a class="page-link" href='index.php?action=accueil&page=<?php if(($page-1) == 0){echo $page;}else{echo ($page-1);}; ?>'>Page précédente</a></li>
+                <li <?php if($page == 1){echo "style='display: none;'";}?> class="page-item <?php if($page == 1 OR $page == 0){echo 'disabled';} ?>"><a class="page-link" href='index.php?action=accueil&page=<?php if(($page-1) == 0){echo $page;}else{echo ($page-1);}; ?>'>Page précédente</a></li>
                 <?php 
                     $i = 1;
                     while($i <= $maxNbOfPage) {
-                        echo "<li class='page-item'><a class='page-link' href='index.php?action=accueil&page=$i'>$i</a></li>";
+                        ?><li class="page-item <?php if($page == $i){echo 'disabled';};?>"><a class='page-link' href='index.php?action=accueil&page=<?php echo $i;?>'><?php echo $i;?></a></li>
+                        <?php
                         $i++;
                     };
                 ?>
-                <li class="page-item"><a class="page-link" href='index.php?action=accueil&page=<?php if(($page+1)>$maxNbOfPage){echo $page;}else{echo ($page+1);}?>'>Page suivante</a></li>
+                <li <?php if($page == $maxNbOfPage){echo "style='display: none;'";}?> class="page-item <?php if($page == $maxNbOfPage){echo 'disabled';} ?>"><a class="page-link" href='index.php?action=accueil&page=<?php if(($page+1)>$maxNbOfPage){echo $page;}else{echo ($page+1);}?>'>Page suivante</a></li>
             </ul>
         </nav>
         <?php   

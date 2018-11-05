@@ -16,10 +16,10 @@ forceConnection('accueil');
                     echo '<h1>'.$billet->getTitle().'</h1>';
                     echo '<p>'.$billet->getContent().'<p>';
                     if(isset($_SESSION['userId'])){
-                        echo "<a role='button' class='commentButton btn btn-primary' href=index.php?action=displayViewCreateComment&idBillet=".$billet->getId().">Laisser un commentaire</a>";
+                        echo "<a role='button' class='commentButton btn btn-primary' href='index.php?action=displayViewCreateComment&idBillet=".$billet->getId()."'>Laisser un commentaire</a>";
                     } else{
-                        echo "<p class='bold'>Pour laisser un commentaire, vous devez être connecté.</p>";
-                        echo "<a class='btn btn-primary' class='connect' href=index.php?action=login>Se connecter</a>";
+                        echo "<p class='bold'>Pour laisser ou signaler un commentaire, vous devez être connecté.</p>";
+                        echo "<a class='btn btn-primary connect' href='index.php?action=login'>Se connecter</a>";
                     }
                     echo "</div>";
                 }
@@ -39,17 +39,15 @@ forceConnection('accueil');
                         if(isset($_SESSION['userId'])){
                             if($value[5]!= 1){
                                 if($value[6]==1){
-                                    echo "<p class=smallMessage>Vous avez déjà signalé ce commentaire.</p>";
+                                    echo "<p class='smallMessage'>Vous avez déjà signalé ce commentaire.</p>";
                                 } else{
-                                    echo "<a role='button' class='commentButton btn btn-primary' href=index.php?action=reportAComment&idComment=".$value[0].">Signaler le commentaire</a>";
+                                    echo "<a role='button' class='commentButton btn btn-primary' href='index.php?action=reportAComment&idComment=".$value[0]."'>Signaler le commentaire</a>";
                                 }
                                 
                             } else{
                                 echo "<p class='smallMessage bold'>Ce commentaire a été validé par un modérateur et ne peut donc plus être signalé.</p>";
                             }
                         } 
-                        echo '</br>';
-                        echo '</br>';
                         echo '</div>';
 
                     }

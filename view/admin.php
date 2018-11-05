@@ -14,12 +14,12 @@ forceConnection('login');
                     <p>Veuillez saisir les informations ci-dessous pour vous connecter.</p>
                     <form class='col-12' method="post" action='<?php echo ROOT.'/index.php';?>'>
                         <div class='form-group'>
-                            <label for="pseudo">Pseudo :</label>
-                            <input type="text" name="pseudo" id="pseudo">
+                            <label for="pseudoConnect">Pseudo :</label>
+                            <input type="text" name="pseudoConnect" id="pseudoConnect">
                         </div>
                         <div class='form-group'>
-                            <label for="password">Mot de passe :</label>
-                            <input type="password" name="password" id="password">
+                            <label for="passwordConnect">Mot de passe :</label>
+                            <input type="password" name="passwordConnect" id="passwordConnect">
                         </div>
                         <div class='form-group'>
                             <input class='btn btn-primary' type="submit" value="Valider">
@@ -32,19 +32,19 @@ forceConnection('login');
                     <p>Veuillez saisir les informations ci-dessous pour vous en créer un.</p>
                     <form class='col-12' method="post" action='<?php echo ROOT.'/index.php';?>'>
                         <div class='form-group'>
-                            <label for='pseudo'>Pseudo :</label>
-                            <input type='text' name='pseudo' id='pseudo'>
+                            <label for='pseudoCreate'>Pseudo :</label>
+                            <input type='text' name='pseudoCreate' id='pseudoCreate'>
                         </div>
                         <div class='form-group'>
                             <label for='email'>E-Mail :</label>
                             <input type='email' name='email' id='email'>
                         </div>
                         <div class='form-group'>
-                            <label for='emailConfirmation'>Mot de passe :</label>
-                            <input type='password' name='password' id='password'>
+                            <label for='passwordCreate'>Mot de passe :</label>
+                            <input type='password' name='passwordCreate' id='passwordCreate'>
                         </div>
                         <div class='form-group'>
-                            <label for='password'>Confirmation du mot de passe :</label>
+                            <label for='passwordConfirmation'>Confirmation du mot de passe :</label>
                             <input type='password' name='passwordConfirmation' id='passwordConfirmation'>
                         </div>
                         <div class='form-group'>
