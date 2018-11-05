@@ -13,14 +13,12 @@ require_once(__DIR__.'/controller/billetController.php');
 require_once(__DIR__.'/controller/accueilController.php');
 require_once(__DIR__.'/controller/commentController.php');
 require_once(__DIR__.'/controller/moderateController.php');
-    // $nbOfReportsNotModerated = displayNbOfReportsNotModerated();
-// Routeur vers les différents Controller
+
 if(isset($_REQUEST['action'])){
     switch ($_REQUEST['action']) {
         case 'loginAdmin':
             require_once(__DIR__.'/controller/adminController.php');
             login();  
-            unset($_SESSION['url']);  
             break;
         case 'createBillet':
             require_once(__DIR__.'/controller/billetController.php');
@@ -75,7 +73,7 @@ if(isset($_REQUEST['action'])){
             break;
         case 'newUser' :
             require_once(__DIR__.'/controller/accueilController.php');
-            newUser($_POST['pseudo'], $_POST['email'], $_POST['password'], $_POST['passwordConfirmation']);
+            newUser($_POST['pseudoCreate'], $_POST['email'], $_POST['passwordCreate'], $_POST['passwordConfirmation']);
             break;
         case 'seDeconnecter' :
             require_once(__DIR__.'/controller/adminController.php');

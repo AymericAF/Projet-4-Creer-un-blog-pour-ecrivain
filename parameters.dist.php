@@ -4,3 +4,4 @@ $host = '';
 $dbname = '';
 $user = '';
 $password = '';
+$apiKeyTinyMCE = '';

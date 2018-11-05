@@ -12,9 +12,9 @@
                 </div>  
                 <div class='col-sm-2'>
                     <?php if(isset($_SESSION['userId'])){
-                        echo "<a class='connect' href=index.php?action=seDeconnecter>Se déconnecter</a>";
+                        echo "<a class='connect' href='index.php?action=seDeconnecter'>Se déconnecter</a>";
                         } else{
-                            echo "<a class='connect' href=index.php?action=login>Se connecter</a>";
+                            echo "<a class='connect' href='index.php?action=login'>Se connecter</a>";
                         } 
                     ?>  
                 </div>

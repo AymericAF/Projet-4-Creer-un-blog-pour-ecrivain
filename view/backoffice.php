@@ -22,9 +22,9 @@
                         echo "<div class='container divSousHeaderAdmin'>"; 
                         echo '<h2>'.$value[0].'</h2>';
                         echo $value[1];
-                        echo "<a class='modifyButton btn btn-primary' href=index.php?action=displayBilletToModify&idBillet=$value[2]>Modifier</a>";
+                        echo "<a class='modifyButton btn btn-primary' href='index.php?action=displayBilletToModify&idBillet=$value[2]'>Modifier</a>";
                         echo '  ';
-                        echo "<a class='deleteButton btn btn-danger' href=index.php?action=deleteBillet&idBillet=$value[2]>Supprimer</a>";
+                        echo "<a class='deleteButton btn btn-danger' href='index.php?action=deleteBillet&idBillet=$value[2]'>Supprimer</a>";
                         echo '</div>';
                         echo '<br />';
                     }
@@ -33,17 +33,18 @@
 
         </div>
         <nav aria-label="Page navigation" class='divSousHeaderAdmin'>
-                <ul class="pagination container">
-                    <li class="page-item"><a class="page-link" href='index.php?action=backofficeView&page=<?php if(($page-1) == 0){echo $page;}else{echo ($page-1);}; ?>'>Page précédente</a></li>
-                    <?php 
-                        $i = 1;
-                        while($i <= $maxNbOfPage) {
-                            echo "<li class='page-item'><a class='page-link' href='index.php?action=backofficeView&page=$i'>$i</a></li>";
-                            $i++;
-                        };
-                    ?>
-                    <li class="page-item"><a class="page-link" href='index.php?action=backofficeView&page=<?php if(($page+1)>$maxNbOfPage){echo $page;}else{echo ($page+1);}?>'>Page suivante</a></li>
-                </ul>
+            <ul class="pagination container">
+                <li <?php if($page == 1){echo "style='display: none;'";}?> class="page-item <?php if($page == 1 OR $page == 0){echo 'disabled';} ?>"><a class="page-link" href='index.php?action=backofficeView&page=<?php if(($page-1) == 0){echo $page;}else{echo ($page-1);}; ?>'>Page précédente</a></li>
+                <?php 
+                    $i = 1;
+                    while($i <= $maxNbOfPage) {
+                        ?><li class="page-item <?php if($page == $i){echo 'disabled';};?>"><a class='page-link' href='index.php?action=backofficeView&page=<?php echo $i;?>'><?php echo $i;?></a></li>
+                        <?php
+                        $i++;
+                    };
+                ?>
+                <li <?php if($page == $maxNbOfPage){echo "style='display: none;'";}?> class="page-item <?php if($page == $maxNbOfPage){echo 'disabled';} ?>"><a class="page-link" href='index.php?action=backofficeView&page=<?php if(($page+1)>$maxNbOfPage){echo $page;}else{echo ($page+1);}?>'>Page suivante</a></li>
+            </ul>
         </nav>
         <?php   
             require_once(__DIR__.'/footerBackoffice.php');

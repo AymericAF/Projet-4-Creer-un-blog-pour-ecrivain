@@ -10,8 +10,8 @@ function create(){
         $newBillet = new BilletsManager();
         $newBillet->createInDb();
         $confirmationMessage = 'Votre billet a bien été enregistré.';
-        displayViewCreateBillet();
-    }
+        read('backoffice', 1);
+    } 
 }
 
 function modifyBillet($id){

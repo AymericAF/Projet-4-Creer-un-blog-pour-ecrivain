@@ -4,20 +4,21 @@ require_once(__DIR__.'/billetController.php');
 require_once(__DIR__.'/../controller_utils.php');
 
 function login(){
-    if(isset($_POST['pseudo']) && isset($_POST['password'])){
+    if(isset($_POST['pseudoConnect']) && isset($_POST['passwordConnect'])){
         $connexion = new Users();
-        $user = $connexion->getUserInformationWithPseudo($_POST['pseudo']);
+        $user = $connexion->getUserInformationWithPseudo($_POST['pseudoConnect']);
 
-        if($user->getAccess_level() ==='admin' && password_verify($_POST['password'], $user->getPassword())){
+        if($user->getAccess_level() ==='admin' && password_verify($_POST['passwordConnect'], $user->getPassword())){
             $_SESSION['access_level'] = 'admin';
             $_SESSION['userId'] = $user->getId();
             addMessage('success', 'Vous vous êtes connecté avec succès.');
             read('backoffice', 1);
-        } elseif($user->getAccess_level()==='user' && password_verify($_POST['password'], $user->getPassword())){
+        } elseif($user->getAccess_level()==='user' && password_verify($_POST['passwordConnect'], $user->getPassword())){
             $_SESSION['access_level'] = 'user';
             $_SESSION['userId'] = $user->getId();
             addMessage('success', 'Vous vous êtes connecté avec succès.');
-            read('accueil', 1);
+            header("location:".  $_SESSION['url']);
+            unset($_SESSION['url']);
         } else{
             $_SESSION['access_level'] = 'not_valid';
             addMessage('warning', 'Votre user et/ou votre mot de passe ne sont pas valides. Veuillez vérifier ces informations.');
