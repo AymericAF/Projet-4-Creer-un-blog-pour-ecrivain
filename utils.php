@@ -28,4 +28,10 @@ function pageTitle($title){
     require_once(__DIR__.'/view/html.php');
 }
 
+function checkAdminLevelAuthorisation(){
+    if($_SESSION['access_level'] !== 'admin'){
+        header('location: '.ROOT);
+    }
+}
+
 

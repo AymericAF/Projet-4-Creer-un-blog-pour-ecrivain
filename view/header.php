@@ -1,6 +1,7 @@
 <?php 
     require_once(__DIR__.'/../utils.php');
     forceConnection('login');
+    checkAdminLevelAuthorisation();
     require_once(__DIR__.'/../controller/moderateController.php');
     $nbOfReportsNotModerated = displayNbOfReportsNotModerated();
 ?>

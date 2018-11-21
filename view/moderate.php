@@ -1,6 +1,7 @@
 <?php 
     require_once(__DIR__.'/../utils.php');
     forceConnection('login'); 
+    checkAdminLevelAuthorisation();
 ?>
 
         <?php pageTitle('Modération');
@@ -20,8 +21,8 @@
                         echo "<div class='container comments divSousHeaderAdmin'>";
                         echo '<p>'.$value[1].'</p>';  
                         echo "<p><strong>Nb de signalement: </strong><span class='badge badge-primary'>".$value[2]."</span> </p>";
-                        echo "<a class='btn btn-success margin-right-10 margin-bottom-10' href='index?action=commentValidation&idComment=".$value[0]."' role='button'>Valider le commentaire</a>";
-                        echo "<a class='btn btn-danger margin-bottom-10' href='index?action=deleteComment&idComment=".$value[0]."' role='button'>Supprimer le commentaire</a>";
+                        echo "<a class='btn btn-success margin-right-10 margin-bottom-10' href='index.php?action=commentValidation&idComment=".$value[0]."' role='button'>Valider le commentaire</a>";
+                        echo "<a class='btn btn-danger margin-bottom-10' href='index.php?action=deleteComment&idComment=".$value[0]."' role='button'>Supprimer le commentaire</a>";
                         echo '</div>';
                     }
                 }

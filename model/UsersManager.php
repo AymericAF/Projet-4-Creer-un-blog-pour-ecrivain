@@ -7,7 +7,9 @@ forceConnection('login');
 class Users extends ConnexionManager{    
     public function getUserInformationWithPseudo($pseudo){
         $user = new User;
-        $data = $this->dbConnect()->query("SELECT * FROM users WHERE pseudo='$pseudo'");
+        $data = $this->dbConnect()->prepare("SELECT * FROM users WHERE pseudo= :pseudo");
+        $data->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+        $data->execute();
         while ($donnees = $data->fetch()){
             $user->setId($donnees['id']);
             $user->setPseudo($donnees['pseudo']);
@@ -21,7 +23,9 @@ class Users extends ConnexionManager{
 
     public function getUserInformationWithEmail($email){
         $user = new User;
-        $data = $this->dbConnect()->query("SELECT * FROM users WHERE mail_address='$email'");
+        $data = $this->dbConnect()->prepare("SELECT * FROM users WHERE mail_address= :email");
+        $data->bindParam(':email', $email, PDO::PARAM_STR);
+        $data->execute();
         while ($donnees = $data->fetch()){
             $user->setId($donnees['id']);
             $user->setPseudo($donnees['pseudo']);

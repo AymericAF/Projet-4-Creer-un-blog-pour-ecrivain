@@ -1,6 +1,7 @@
 <?php
 require_once('config.php');
 forceConnection('accueil');
+require_once(__DIR__.'/model/BilletsManager.php');
 
 function read($view, $page){
     $nbOfBilletsPerPage = 3;

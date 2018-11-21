@@ -8,11 +8,6 @@ if(isset($_SESSION)){
 
 
 require_once(__DIR__.'/config.php');
-require_once(__DIR__.'/controller/adminController.php');
-require_once(__DIR__.'/controller/billetController.php');
-require_once(__DIR__.'/controller/accueilController.php');
-require_once(__DIR__.'/controller/commentController.php');
-require_once(__DIR__.'/controller/moderateController.php');
 
 if(isset($_REQUEST['action'])){
     switch ($_REQUEST['action']) {

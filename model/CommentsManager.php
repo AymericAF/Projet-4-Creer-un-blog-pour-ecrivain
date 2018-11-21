@@ -57,7 +57,10 @@ class CommentsManager extends ConnexionManager{
                 $commentAuthor = $result['pseudo'];
                 $commentCreationDate = $result['niceDate'];
                 $commentModerated = $result['moderated'];
-                $req2 = $this->dbConnect()->query("SELECT COUNT(*) as 'nombre' FROM reports WHERE id_comment = $commentId AND id_author = $idUser");
+                $req2 = $this->dbConnect()->prepare("SELECT COUNT(*) as 'nombre' FROM reports WHERE id_comment = :id_comment AND id_author = :id_author");
+                $req2->bindParam(':id_comment', $commentId, PDO::PARAM_INT);
+                $req2->bindParam(':id_author', $idUser, PDO::PARAM_INT);
+                $req2->execute();
                 $result2 = $req2->fetch();
                 $userReport = $result2['nombre'];
                 if($userReport>=1){

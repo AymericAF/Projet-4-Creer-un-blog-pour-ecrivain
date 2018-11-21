@@ -24,7 +24,6 @@ function modifyBillet($id){
 }
 
 function displayViewCreateBillet(){
-    $nbOfReportsNotModerated = displayNbOfReportsNotModerated();
     require_once(__DIR__.'/../view/createBillet.php');
 }
 

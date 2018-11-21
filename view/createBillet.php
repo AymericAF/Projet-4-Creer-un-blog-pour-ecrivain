@@ -2,6 +2,7 @@
     require_once(__DIR__.'/../utils.php');
     require(__DIR__.'/../parameters.php');
     forceConnection('login');
+    checkAdminLevelAuthorisation();
 ?>
 
 <!DOCTYPE html>

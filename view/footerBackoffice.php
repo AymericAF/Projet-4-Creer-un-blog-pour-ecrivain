@@ -1,6 +1,7 @@
 <?php 
     require_once(__DIR__.'/../utils.php');
     forceConnection('login');
+    checkAdminLevelAuthorisation();
 ?>
 
 <footer class='divSousHeaderAdmin'>
